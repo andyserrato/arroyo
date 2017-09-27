@@ -12,7 +12,10 @@
     </tr>
     <tr>
         <td colspan="2">CIF:</td>
-        <td colspan="4">xxxx xxxx xxx</td>
+        <td colspan="4">
+            <?php
+                echo $userData['numCif'][0];
+            ?></td>
     </tr>        
     <tr>
         <td colspan="2">Teléfono:</td>
