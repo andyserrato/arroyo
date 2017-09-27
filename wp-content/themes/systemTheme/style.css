@@ -1,0 +1,402 @@
+@charset "UTF-8";
+/*
+Theme Name: systemTheme
+Theme URI: http://mumaweb.com
+Author:         muma servicios graficos
+Author URI:     https://woocommerce.com/
+Description:   system eshop
+Version:       1.0
+License:       GNU General Public License v2 or later
+License URI:   http://www.gnu.org/licenses/gpl-2.0.html
+Template:      storefront
+Text Domain:   storefront
+Tags:          e-commerce, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template, threaded-comments, accessibility-ready, rtl-language-support, footer-widgets, sticky-post, theme-options
+
+
+*/
+
+@import url("../storefront/style.css");
+
+/*----------------- Empieza a añadir cambios aquí abajo -------------------------------*/
+
+@font-face {
+    font-family: 'din';
+    src: url('fonts/dinneuzeitgrotesk-boldcond-webfont.eot');
+    src: url('fonts/dinneuzeitgrotesk-boldcond-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/dinneuzeitgrotesk-boldcond-webfont.woff2') format('woff2'),
+         url('fonts/dinneuzeitgrotesk-boldcond-webfont.woff') format('woff'),
+         url('fonts/dinneuzeitgrotesk-boldcond-webfont.ttf') format('truetype'),
+         url('fonts/dinneuzeitgrotesk-boldcond-webfont.svg#dinschriftboldcond') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}  
+@font-face {
+    font-family: 'AvenirNextRegular';
+    src: url('fonts/av-reg-webfont.eot');
+    src: url('fonts/av-reg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/av-reg-webfont.woff') format('woff'),
+         url('fonts/av-reg-webfont.ttf') format('truetype'),
+         url('fonts/av-reg-webfont.svg#AvenirNextRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AvenirNextDemiBold';
+    src: url('fonts/AvenirNext-DemiBold.eot');
+    src: url('fonts/AvenirNext-DemiBold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/AvenirNext-DemiBold.woff') format('woff'),
+         url('fonts/AvenirNext-DemiBold.ttf') format('truetype'),
+         url('fonts/AvenirNext-DemiBold.svg#AvenirNextDemiBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1, h2, a{
+   text-transform: uppercase;
+   font-family: AvenirNextRegular;
+}
+
+h2{
+   font: 25px AvenirNextRegular;
+   color: #a60000;
+}
+
+select {
+    width:100%;
+    padding: .6180469716em;
+    background-color: #f2f2f2;
+    color: #43454b;
+    outline: 0;
+    border: 0;
+    -webkit-appearance: none;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-weight: 400;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.125);
+   }
+.input-text, input[type=text], input[type=email], input[type=url], input[type=password], input[type=search], textarea {
+    width: 100%;
+}
+/* ////////// HEADER ///////// */
+#masthead.site-header{
+   padding-top:20px!important;
+}
+
+.site-header{
+   background-color: #ffffff;
+   height: 100px!important;
+}
+
+.site-search{
+   margin-bottom: 23px!important;
+}
+
+.site-branding-mob{
+   display: none;
+}
+
+.site-branding{
+   width: 50%!important;
+   min-width: 450px!important;
+   margin-bottom: 0!important;
+}
+
+.site-branding img{
+   width: 100%;
+}
+
+.storefront-primary-navigation{
+   background-color: #a60000!important;
+   opacity: 1!important;
+}
+
+#primary.content-area{
+   margin-top:0.25%!important;
+}
+
+.nav-menu li a{
+   color: #ffffff!important;
+}
+
+/*/ ========================================================================================= /
+/ Updated By     Updated Date                           Description                         /
+/ ------------- -------------- ------------------------------------------------------------ /
+ Lalo          March 7, 2017  Used forr tables on the "Search" screen
+/ ------------- -------------- ------------------------------------------------------------ /
+/ ========================================================================================= /*/
+  table#searchCust 
+   {
+    font-family: arial, sans-serif;
+    font-size: 10pt;
+    border-collapse: collapse;
+    / width: 70%; /
+   }
+
+ table#searchCust td, table#searchCust th 
+   {
+    border: 1px solid #dddddd;
+    padding: 6px;
+   }
+
+ table#searchCust tr:nth-child(even)
+   {
+    background-color: #dddddd;
+   }
+   
+/*/ ========================================================================================= /*/
+
+
+/* ////////// HOME PAGE ///////// */
+
+#primaryB.content-area{
+   width:100%!important;
+   margin-right:none!important;
+   margin-top: 2%;
+}
+
+/* ////////// CARRUSEL ///////// */
+
+#img-principal{
+   /*float: left;*/
+   margin-top: 10px!important;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 15px;
+   /*background-color: #278c8e;*/
+   width: 100%!important;
+   text-align: center;
+}
+
+#img-principal img{
+/* margin-left: auto!important;
+   margin-right: auto!important;*/
+   width: 100%!important;  
+}
+
+.cycloneslider-slides cycle-slideshow{
+   margin: 0 auto!important;
+}
+
+/* ////////// SEARCH ///////// */
+
+/* /
+    ocultar campo sidebar
+/ */
+#secondary.widget-area .sf-field-taxonomy-product_tag{
+   display: none;
+}
+/* /
+     fin ocultar campo sidebar
+/ */
+
+#buscadorEspeMob{
+   display: none;
+}
+
+select.postform, select.orderby{
+background: none!important;
+width: 90%!important;
+box-shadow: none!important;
+appearance: none;
+font: 20px AvenirNextDemiBold;
+color: #a60000;
+text-transform: uppercase;
+}
+
+
+/* ////////// COMPRA ///////// */
+.add_to_wishlist{
+   float: right;
+   border-radius: 0!important;
+}
+
+/* ////////// PANEL DE ADMINISTRACIÓN ///////// */
+#col-down{
+    float: left;
+    width: 100%;
+    
+}
+.entryContentMod{
+   float: left;
+   width: 100%; 
+}
+
+#full-colum{
+    float: left;
+    width: 76%;
+}
+
+#lf-colum, #rg-colum{
+    float: left;
+}
+
+#lf-colum{
+    width: 60%;
+}
+
+#rg-colum{
+    width: 15%;
+}
+.options li{
+    margin-bottom: 5%;
+    display: inline-block;
+}
+
+.options, #rg-colum ul{
+    float: right;
+    margin: 0;
+}
+
+.options li, #rg-colum ul li{
+    width: auto;
+    list-style-type: none;
+    border: 1px solid #333;
+    padding: 3px;
+    text-align: center;
+}
+
+#rg-colum ul li{
+    width: auto;
+    list-style-type: none;
+    border: 1px solid #333;
+    padding: 3px;
+    text-align: center;
+}
+
+#full-colum ul li a, #rg-colum ul li a{
+    font-size: 12px;
+}
+
+.woocommerce-MyAccount-navigation ul li a{
+    font-weight: bold;
+    text-align: left;
+    text-transform: capitalize;
+    font-size: 14.5px;
+}
+/* ////////// BUSCADOR CLIENTE ///////// */
+
+#findClients
+ {
+  width: 100%;
+  margin-bottom: 2%;
+ }
+
+#usersFound
+ {
+  width: 100%;
+ }
+
+#usersFound td, #usersFound th
+ {
+  height: 5px!important;
+  padding: 5px;
+ }
+.codigo
+ {
+    width: 12%;
+ }
+
+.cliente
+ {
+    width: 30%;
+ }
+
+.telf
+ {
+    width: 20%;
+ }
+
+.lugar
+ {
+    width: 30%;
+ }
+
+.rank
+ {
+    width: 5%;
+ }
+/* ////////// BUSCADOR AVANZADO CLIENTE ///////// */
+
+/* ////////// FICHA CLIENTE ///////// */
+#moreCustomerData
+ {
+  float: left;
+ }
+#moreCustomerData ul
+ {
+  margin: 0;
+  float: left;
+  list-style-type: none;
+  width: 100%;
+ }
+
+#moreCustomerData ul li
+ {
+  float: left;
+  width: auto;
+  border: 1px solid #333;
+  padding: 1%;
+  text-align: center;
+ }
+/* ////////// MEDIA QUERY ///////// 
+
+@media (max-width:768px){
+   
+   #masthead.site-header{
+      margin-bottom: 0!important;
+   }
+   .site-branding{
+      display: none;
+   }
+   
+   .site-branding-mob{
+      display: block;
+      width: 100%;
+   }
+   
+   #primaryB.content-area{
+      margin-top: 0.25%;
+   }
+   
+   /* /
+      buscador principal 
+   / */
+   #buscadorEspe{
+      display: none!important;
+   }
+   
+   #buscadorEspeMob{
+      display: block;
+   }
+   
+   #buscadorEspeMob ul li{
+      float: left;
+      margin-right: 3%;
+      font-size: 13px;
+   }
+   
+   #buscadorEspeMob .sf-field-taxonomy-product_tag{
+      width: 100%!important;
+   }
+   
+   #buscadorMob select.postform, select.orderby{
+   background: none!important;
+   width: 90%!important;
+   box-shadow: none!important;
+   appearance: none;
+   font: 14px AvenirNextDemiBold;
+   color: #a60000;
+   text-transform: uppercase;
+   }
+   
+   /* /
+       ocultar lista sidebar
+   / */
+   #secondary.widget-area .sf-field-taxonomy-product_cat{
+      display: none!important;
+   }
+   /* /
+        fin ocultar lista sidebar
+   / */
+   
+}
