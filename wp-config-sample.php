@@ -1,7 +1,7 @@
 <?php
 /** 
  * Configuración básica de WordPress.
- *
+ * 
  * Este archivo contiene las siguientes configuraciones: ajustes de MySQL, prefijo de tablas,
  * claves secretas, idioma de WordPress y ABSPATH. Para obtener más información,
  * visita la página del Codex{@link http://codex.wordpress.org/Editing_wp-config.php Editing
