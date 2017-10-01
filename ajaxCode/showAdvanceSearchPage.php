@@ -33,40 +33,44 @@
     <table>
       <tr>
         <td colspan="3">
-          <input type="text" name="companyField" placeholder="Nombre Cliente">
+          <input type="text" id="arr-companyField" name="companyField" placeholder="Nombre Cliente">
         </td>
       </tr>
       
       <tr>
         <td colspan="1">
-          <select placeholder="Sector Cliente" name="sectorField">
+          <select placeholder="Sector Cliente" name="sectorField" id="arr-sectorField">
             <option disabled selected>Sector del Cliente</option>
             <option>Todos</option>  
-            <option>Odontólogo</option> 
-            <option>Veterinario</option> 
-            <option>Podólogo</option> 
+            <option>Odontología</option>
+            <option>Protésico</option>
+            <option>Podólogo</option>
+            <option>Esteticista</option>
+            <option>Veterinario</option>
+            <option>Distribuidor</option>
           </select> 
         </td>
         
         <td colspan="1">
-          <select name="rankingList"> 
+          <select name="rankingList" id="arr-rankingList">
             <option disabled selected>Ranking del Cliente</option> 
             <option>Todos</option> 
-            <option>Maximo</option> 
-            <option>Mediano</option> 
-            <option>Bajo</option> 
+            <option>Máxima</option>
+            <option>Media</option>
+            <option>Baja</option>
           </select> 
         </td>
         
         <td colspan="1">
-          <select name="dayOfVisit"> 
+          <select name="dayOfVisit" id="arr-dayOfVisit">
             <option disabled selected>Día de Visita</option>
             <option>Todos</option>  
             <option>Lunes</option> 
             <option>Martes</option> 
             <option>Miercoles</option> 
             <option>Jueves</option> 
-            <option>Viernes</option> 
+            <option>Viernes</option>
+            <option>Sabado</option>
           </select> 
         </td>
            
@@ -78,8 +82,8 @@
          
         <td colspan="1">
           ¿Concertar Cita? <br />
-          Si <input name="getAppointment" value="Yes" type="radio">  &nbsp;
-          No <input name="getAppointment" value="No" type="radio">
+          Si <input name="concertarCita" value="si" type="radio">  &nbsp;
+          No <input name="concertarCita" value="no" type="radio">
         </td>
         
       </tr>
@@ -87,52 +91,52 @@
       
       <tr>
         <td colspan="2">
-           <input type="text" placeholder="Calle" name="calleCliente">
+           <input type="text" placeholder="Calle" name="calleCliente" id="arr-calleCliente">
        </td>
        <td colspan="1">
-         <input type="text" placeholder="Cod. Postal" name="codPostal">
+         <input type="text" placeholder="Cod. Postal" name="codPostal" id="arr-codPostal">
        </td>
       </tr>
       
       <tr>
         <td colspan="1">
-           <input type="text" placeholder="Ciudad" name="clienteCiudad">
+           <input type="text" placeholder="Ciudad" name="clienteCiudad" id="arr-clienteCiudad">
        </td>
        <td colspan="1">
-         <input type="text" placeholder="Población" name="clientePostal">
+         <input type="text" placeholder="Población" name="clientePoblacion" id="arr-clientePoblacion">
        </td>
        <td colspan="1">
-         <input type="text" placeholder="Núm. Ruta" name="numeroDeRuta">
+         <input type="text" placeholder="Núm. Ruta" name="numeroDeRuta" id="arr-numeroDeRuta">
        </td>
       </tr>
       
       <tr>
        <td colspan="1">
           ¿Clientes Visitables?: &nbsp; 
-          Si <input name="clienteVisitable" value="true"  type="radio"> &nbsp;  
-          No <input name="clienteVisitable" value="false" type="radio">
+          Si <input name="clienteVisitable" value="si"  type="radio"> &nbsp;
+          No <input name="clienteVisitable" value="no" type="radio">
        </td>
        <td colspan="2">
          ¿Se han Visitado? &nbsp;
-              Si <input name="seHanVisitado" value="true" type="radio"> &nbsp;
-              No <input name="seHanVisitado" value="false" type="radio">
+          Si <input name="seHanVisitado" value="si" type="radio"> &nbsp;
+          No <input name="seHanVisitado" value="no" type="radio">
        </td>
       </tr>
       
       <tr>
        <td colspan="1"></td>
        <td colspan="1">
-         <input type="text" placeholder="desde" name="visitFrom">
+         <input type="date" placeholder="desde" name="visitFrom" id="arr-visitFrom">
        </td>
        <td colspan="1">
-         <input type="text" placeholder="hasta" name="visitTo"> 
+         <input type="date" placeholder="hasta" name="visitTo" id="arr-visitTo">
        </td>
       </tr>
       
       
       <tr>
           <td colspan="1">
-             <input name="submitSearch" value="submitSearch" type="button" onclick="findUser('den')">
+             <input name="submitSearch" value="submitSearch" type="button" onclick="findClientAdvancedSearch()">
           </td>
       </tr>
     </table>   
