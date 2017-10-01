@@ -192,7 +192,7 @@ function endpoint_content()
             <th>Especialidad:</th>
             <td>
               <?php 
-                 echo $userData['especialidadContacto'][0];
+                 echo $userData['sectorCliente'][0];
                ?>
             </td>
           </tr>
