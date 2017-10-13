@@ -203,4 +203,20 @@ function getAllUserMeta($userID)
 // ----------------------------------------------------------------------      
 add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
 
+// ----------------------------------------
+//  UPLOAD User meta Data
+// ---------------------------------------------------------------------
+function override_user_id( $user_id, $entry, $form, $feed )
+ {
+   $user_id = rgget( 'clienteID' );
+   print_r('id: ' . $user_id);
+   return $user_id;
+ }
+
+add_filter( 'gform_user_registration_update_user_id_9', 'override_user_id', 10, 4 );
+add_filter( 'gform_user_registration_update_user_id_13', 'override_user_id', 10, 4 );
+add_filter( 'gform_user_registration_update_user_id_12', 'override_user_id', 10, 4 );
+add_filter( 'gform_user_registration_update_user_id_14', 'override_user_id', 10, 4 );
+add_filter( 'gform_user_registration_update_user_id_15', 'override_user_id', 10, 4 );
+add_filter( 'gform_user_registration_update_user_id_16', 'override_user_id', 10, 4 );
 ?>
