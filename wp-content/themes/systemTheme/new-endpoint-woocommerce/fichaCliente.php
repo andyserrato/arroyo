@@ -1,4 +1,5 @@
 <?php
+ob_start();
 class Ficha_Cliente 
  {
   // --------------------------------------------------------------------------
@@ -117,172 +118,189 @@ function endpoint_content()
 //   print_r($userData);
    $userDataWP = get_userdata($userID);
   $userEmail = $userDataWP->user_email;
+
+// ============================================  
+// Acciones del Formulario para cambio de datos
+// ============================================
+
+   require('ActionsContactForm.php'); 
 ?>
       <div id="lf-colum">
-        <table id="customerName">
-          <tr>
-            <td colspan="2">
-              <h4>
-                 <?php 
-                    echo $userData['nickname'][0];
-//                    print_r($userData);
-                  ?>
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <th>Cod. cliente:</th>
-            <th>Cod. Cliente Papel:</th>
-          </tr>
-          <tr>
-            <td>
-              <?php 
-                 echo $userData['codClienteAuto'][0];
-               ?>
-            </td>
-            <td>
-              <?php 
-                 echo $userData['codClientePapel'][0];
-               ?>
-            </td>
-          </tr>
-          <tr>
-            <th>¿Cliente Visitable?</th>
-            <td>
-              <?php 
-                 echo $userData['visitCustomer'][0];
-               ?>
-            </td>
-          </tr>
-          <tr>
-            <th>Ranking</th>
-            <td>
-              <?php 
-                 echo $userData['rankinCliente'][0];
-               ?>
-            </td>
-          </tr>
-          <tr>
-            <th>¿Concertar Cita?</th>
-            <td>
-              <?php 
-                 echo $userData['concertarCita'][0];
-               ?>
-            </td>
-          </tr>         
-        </table>
-        
-        <table id="contactData">
-          <tr>
-            <th colspan="2">
-               <h4>
-                 DATOS DEL CONTACTO
-               </h4>
-            </th>
-          </tr>
-          <tr>
-            <th>Persona Contacto:</th>
-            <td>
-              <?php 
-                 echo $userData['nombreContacto'][0];
-               ?>
-            </td>
-          </tr>
-          <tr>
-            <th>Especialidad:</th>
-            <td>
-              <?php 
-                 echo $userData['sectorCliente'][0];
-               ?>
-            </td>
-          </tr>
-          <tr>
-            <th>Teléfono:</th>
-          </tr>
-          <tr>
-            <td>
-              <?php 
-                 echo $userData['telFijo1'][0];
-               ?>
-            </td>
-            <td>
-              <?php 
-                 echo $userData['telFijo2'][0];
-               ?>
-            </td>
-          </tr>
-          <tr>
-            <th>Móvil:</th>
-            <td>
-              <?php 
-                 echo $userData['telMovil'][0];
-               ?>
-            </td>
-          </tr>
-          <tr>
-            <th>Email:</th>
-            <td>
-              <?php 
-                 echo $userEmail;
-               ?>
-            </td>
-          </tr>
-          <tr>
-            <th colspan="2">Dirección</th>
-          </tr>
-          <tr>
-            <td colspan="2">
-                <?php
-                  echo $userData['billing_address_1'][0] . ' ' . $userData['numCalle'][0] . ' ' . $userData['numPiso'][0] . ' ' . $userData['billing_postcode'][0] . ' ' . $userData['billing_city'][0] . ' ' . $userData['billing_state'][0];
-                ?>
-            </td>
-          </tr>
-          <tr>
-            <th colspan="2">Observaciones</th>
-          </tr>
-          <tr>
-            <td colspan="2">
-                <?php
-                    echo $userData['observacionCliente'][0];
-                ?>
-            </td>
-          </tr>
-        </table>
-        
-        <nav id="moreCustomerData">
-
-        <ul>
-          <li><input name="horario"     value="horario"     type="button" onclick="showSchedule()">   </input></li>
-          <li><input name="datosEnvio"  value="datosEnvio"  type="button" onclick="datosEnvio()">     </input></li>
-          <li><input name="datosFact"   value="datosFact"   type="button" onclick="datosFacturas()">  </input></li>
-          <li><input name="comentarios" value="comentarios" type="button" onclick="comentarios()">    </input></li>
-          <li><input name="histPedidos" value="histPedidos" type="button" onclick="histPedidos()">    </input></li>
-        </ul>
-
-
-<!--
-          <ul>
-            <li>Horarios</li>
-            <li>Datos de Envío</li>
-            <li>Datos de Facturación</li>
-            <li>Comentarios</li>
-            <li>Historial de Pedidos</li>
-          </ul>
--->
-
-        </nav>
-        
-        <div id="col-down">
-           <?php
-             include('formularios/tablasHorariosBasic.php');
-             include('formularios/shippingInformation.php');
-             include('formularios/billingInformation.php');
-             include('formularios/visitCommentary.php');
-             include('formularios/ordersHistory.php');
-           ?> 
-                    
-        </div>
-        
+      <?php echo '</br>User ID = ' . $userID . '</br>'; ?>
+          <form method="post" name="changeCustomerData" id="changeCustomerData">
+            <table id="customerName">
+              <tr>
+                <!--<td colspan="2">-->
+                <td>
+                  <h4>
+                     <?php 
+                        echo $userData['nickname'][0];
+    //                    print_r($userData);
+                      ?>
+                  </h4>
+                </td>
+                <td>
+                    <input style="float: right; font-size: 12px;" type="submit" name="modDataCustomer" id="modDataCustomer" value="modificar datos cliente" />
+                </td>
+              </tr>
+              <tr>
+                <th>Cod. cliente:</th>
+                <th>Cod. Cliente Papel:</th>
+              </tr>
+              <tr>
+                <td>
+                  <?php 
+                     echo $userData['codClienteAuto'][0];
+                   ?>
+                </td>
+                <td>
+                  <?php 
+                     echo $userData['codClientePapel'][0];
+                   ?>
+                </td>
+              </tr>
+              <tr>
+                <th>¿Cliente Visitable?</th>
+                <td>
+                  <?php 
+                     echo $userData['visitCustomer'][0];
+                   ?>
+                </td>
+              </tr>
+              <tr>
+                <th>Ranking</th>
+                <td>
+                  <?php 
+                     echo $userData['rankinCliente'][0];
+                   ?>
+                </td>
+              </tr>
+              <tr>
+                <th>¿Concertar Cita?</th>
+                <td>
+                  <?php 
+                     echo $userData['concertarCita'][0];
+                   ?>
+                </td>
+              </tr>         
+            </table>
+            
+            <table id="contactData">
+              <tr>
+                <td>
+                   <h4>
+                     DATOS DEL CONTACTO
+                   </h4>
+                </td>
+                <td>
+                    <input style="float: right; font-size: 12px;" type="submit" name="modDataContact" id="modDataContact" value="modificar datos contacto" />
+                </td>
+              </tr>
+              <tr>
+                <th>Persona Contacto:</th>
+                <td>
+                  <?php 
+                     echo $userData['nombreContacto'][0];
+                   ?>
+                </td>
+              </tr>
+              <tr>
+                <th>Especialidad:</th>
+                <td>
+                  <?php 
+                     echo $userData['sectorCliente'][0];
+                   ?>
+                </td>
+              </tr>
+              <tr>
+                <th>Teléfono:</th>
+              </tr>
+              <tr>
+                <td>
+                  <?php 
+                     echo $userData['telFijo1'][0];
+                   ?>
+                </td>
+                <td>
+                  <?php 
+                     echo $userData['telFijo2'][0];
+                   ?>
+                </td>
+              </tr>
+              <tr>
+                <th>Móvil:</th>
+                <td>
+                  <?php 
+                     echo $userData['telMovil'][0];
+                   ?>
+                </td>
+              </tr>
+              <tr>
+                <th>Email:</th>
+                <td>
+                  <?php 
+                     echo $userEmail;
+                   ?>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2">Dirección</th>
+              </tr>
+              <tr>
+                <td colspan="2">
+                    <?php
+                      echo $userData['billing_address_1'][0] . ' ' . $userData['numCalle'][0] . ' ' . $userData['numPiso'][0] . ' ' . $userData['billing_postcode'][0] . ' ' . $userData['billing_city'][0] . ' ' . $userData['billing_state'][0];
+                    ?>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2">Observaciones</th>
+              </tr>
+              <tr>
+                <td colspan="2">
+                    <?php
+                        echo $userData['observacionCliente'][0];
+                    ?>
+                </td>
+              </tr>
+            </table>
+            
+            <nav id="moreCustomerData">
+    
+            <ul>
+              <li><input name="horario"     value="horario"     type="button" onclick="showSchedule()">   </input></li>
+              <li><input name="datosEnvio"  value="datosEnvio"  type="button" onclick="datosEnvio()">     </input></li>
+              <li><input name="datosFact"   value="datosFact"   type="button" onclick="datosFacturas()">  </input></li>
+              <li><input name="comentarios" value="comentarios" type="button" onclick="comentarios()">    </input></li>
+              <li><input name="histPedidos" value="histPedidos" type="button" onclick="histPedidos()">    </input></li>
+            </ul>
+    
+    
+    <!--
+              <ul>
+                <li>Horarios</li>
+                <li>Datos de Envío</li>
+                <li>Datos de Facturación</li>
+                <li>Comentarios</li>
+                <li>Historial de Pedidos</li>
+              </ul>
+    -->
+    
+            </nav>
+            
+             <div id="col-down">
+               <?php
+                 include('formularios/tablasHorarios.php');
+    //             include('formularios/tablasHorariosBasic.php');
+                 include('formularios/shippingInformation.php');
+                 include('formularios/billingInformation.php');
+                 include('formularios/visitCommentary.php');
+                 include('formularios/ordersHistory.php');
+               ?> 
+                        
+             </div>
+           </form> 
+      
       </div><!--end lf-colum-->
       
       <div id="rg-colum">
@@ -292,9 +310,9 @@ function endpoint_content()
                    <a href="'.admin_url( 'post-new.php?post_type=shop_order' ).'">Crear Pedido</a>
 <!--                   --><?php //_e('Don\'t see a Search Form you want to use? <a href="'.admin_url( 'post-new.php?post_type=shop_order' ).'">Create a new Search Form</a>.'); ?>
                </li>
-               <li>
+<!--               <li>
                    <a href="#">Modificar datos</a>
-               </li>
+               </li>-->
                <li>
                    <a href="#">Añadir Comentario</a>
                </li>
