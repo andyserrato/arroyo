@@ -92,6 +92,8 @@ class Datos_Clientes
     return $items;
    }
 
+
+
   // ------------------------------------------------------------------
   // Endpoint HTML content.
   // 
