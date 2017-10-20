@@ -13,13 +13,14 @@
   /**
   * ADD a new option in woocommerce dashboard 
   */
-  include('new-endpoint-woocommerce/datosClientes.php');
-  include('new-endpoint-woocommerce/addNewUser.php');
-  include('new-endpoint-woocommerce/fichaCliente.php');
-  include('new-endpoint-woocommerce/datosComerciales.php');
-  include('new-endpoint-woocommerce/crearNuevoComercial.php');
-  include('new-endpoint-woocommerce/datosDistribuidores.php');
-  include('new-endpoint-woocommerce/crearNuevoDistribuidor.php');
+    include('new-endpoint-woocommerce/datosClientes.php');
+    include('new-endpoint-woocommerce/addNewUser.php');
+    include('new-endpoint-woocommerce/fichaCliente.php');
+    include('new-endpoint-woocommerce/datosComerciales.php');
+    include('new-endpoint-woocommerce/crearNuevoComercial.php');
+    include('new-endpoint-woocommerce/datosDistribuidores.php');
+    include('new-endpoint-woocommerce/crearNuevoDistribuidor.php');
+    include('new-endpoint-woocommerce/createNewOrder.php');
   /**
   * ADD a new User Fields 
   */
