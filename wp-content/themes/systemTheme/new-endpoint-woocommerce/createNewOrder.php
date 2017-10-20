@@ -117,10 +117,10 @@ class Nuevo_Pedido
         $userDataWP = get_userdata($userID);
        $userEmail = $userDataWP->user_email;
 ?>
-
      <div id="full-colum">
         <?php echo '</br>User ID = ' . $userID . '</br>'; ?>
         <h3>formulario para nuevos pedidos</h3>
+        <?php echo do_shortcode('[woocommerce_cart]'); ?>
 
      </div><!--end full-colum-->
      
