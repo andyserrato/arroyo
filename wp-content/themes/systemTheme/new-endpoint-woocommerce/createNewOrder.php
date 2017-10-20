@@ -100,11 +100,27 @@ class Nuevo_Pedido
   // ------------------------------------------------------------------
   public function endpoint_content() 
    {
+      global $wpdb;
+     
+       $sQuery  = "SELECT user_id FROM wp_usermeta WHERE meta_key = 'codClienteAuto' AND meta_value = ";
+       $sQuery .= "(SELECT session_value FROM dt_temp_session WHERE current_user_id = " . get_current_user_id();
+       $sQuery .= " AND session_key = 'currUser')";
+     
+       $userID  = $wpdb->get_var( $sQuery );
+       // ----------------------------------------------------------------
+       if ($userID == null) {
+         $userData  = getAllUserMeta(get_current_user_id());
+        } else {
+         $userData  = getAllUserMeta($userID);
+        }
+     //   print_r($userData);
+        $userDataWP = get_userdata($userID);
+       $userEmail = $userDataWP->user_email;
 ?>
 
      <div id="full-colum">
         <?php echo '</br>User ID = ' . $userID . '</br>'; ?>
-        <h3>formulario paranuevos pedidos</h3>
+        <h3>formulario para nuevos pedidos</h3>
 
      </div><!--end full-colum-->
      
