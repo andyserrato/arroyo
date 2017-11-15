@@ -52,6 +52,36 @@
 
         // -------------------------------------------------------------------------
 
+        // -------------------------------------------------------------------------
+        // This function is use to find products in 'Nuevo Pedido'
+        // Andy  November 13, 2017
+        //
+        // -------------------------------------------------------------------------
+        function findProducts(str) {
+            var currUserId = document.getElementById('currUserId').value;
+            var siteURL = document.getElementById('siteUrl').value;
+
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("productsFound").innerHTML = this.responseText;
+                }
+            };
+
+            var newURL = window.location.protocol + "//" + window.location.host + "/wordpress/";
+            xmlhttp.open("GET", newURL + "ajaxCode/getProductsWithAjax.php?q=" + str + "&currUser=" + currUserId + "&siteUrl=" + siteURL, true);
+            xmlhttp.send();
+        }
+
+        // -------------------------------------------------------------------------
+
 
         // test for href to go to ficha
         function getClientId(str, sCurrUsrID) {
