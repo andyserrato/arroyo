@@ -58,6 +58,7 @@ $num_rows = mysqli_num_rows($productIdList);
 
 if ($num_rows > 0) {
     echo '<tr>';
+    echo '<th class="ID">ID</th>';
     echo '<th class="codigo">Código</th>';
     echo '<th class="cliente">Nombre</th>';
     echo '<th class="telf">Precio</th>';
@@ -76,20 +77,26 @@ if ($num_rows > 0) {
         $clList = $con->query($sQuery);
         echo '<tr>';
 
-        while ($productList = mysqli_fetch_array($clList)) {
+        while ($productList = mysqli_fetch_array($clList))
+          {
             $productTitle = $productList['post_title'];
-            if ($productList['meta_key'] == '_sku') {
+            
+            if ($productList['meta_key'] == '_sku')
+             {
                 $productCode = $productList['meta_value'];
-            } else if ($productList['meta_key'] == '_regular_price') {
+             }
+            else if ($productList['meta_key'] == '_regular_price')
+             {
                 $productPrice = $productList['meta_value'];
-            }
-        }
-
+             }
+          }
+        echo '<td>ID= </td>';
         echo '<td>' . $productCode . '</td>';
         echo '<td>' . $productTitle . '</td>';
         echo '<td>' . $productPrice . '</td>';
 //        echo '<td><a class="button" href="' . $siteUrl . '?add-to-cart=' . $productCode . '">Agregar al Carrito</a></td>';
-        echo '<td><a class="button" href="">Agregar al Carrito</a></td>';
+        echo '<td><a class="button" href="' . $siteUrl . 'escritorio/nuevo-pedido?add-to-cart=978">Agregar al Carrito</a></td>';
+//        echo '<td><a class="button" href="">Agregar al Carrito</a></td>';
         echo '</tr>';
 
         $productCode = '';
