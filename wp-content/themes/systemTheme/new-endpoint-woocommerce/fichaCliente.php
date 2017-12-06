@@ -306,9 +306,7 @@ function endpoint_content()
       <div id="rg-colum">
            <ul>
                <li>
-<!--                   todo borrar esto -->
                    <a href="<?php echo get_site_url() . '/escritorio/nuevo-pedido';?>">Crear Pedido</a>
-<!--                   --><?php //_e('Don\'t see a Search Form you want to use? <a href="'.admin_url( 'post-new.php?post_type=shop_order' ).'">Create a new Search Form</a>.'); ?>
                </li>
 <!--               <li>
                    <a href="#">Modificar datos</a>

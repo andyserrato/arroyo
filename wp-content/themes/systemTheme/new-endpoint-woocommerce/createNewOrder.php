@@ -24,8 +24,6 @@ class Nuevo_Pedido
         // Insering your new tab/page into the My Account page.
         add_filter('woocommerce_account_menu_items', array($this, 'new_menu_items'));
         add_action('woocommerce_account_' . self::$endpoint . '_endpoint', array($this, 'endpoint_content'));
-
-
     }
 
     // ------------------------------------------------------------------
@@ -103,7 +101,6 @@ class Nuevo_Pedido
     public function endpoint_content()
     {
         global $wpdb;
-
         $product = get_page_by_title('PRODUCTO', OBJECT, 'product');
 
         $sQuery = "SELECT user_id FROM wp_usermeta WHERE meta_key = 'codClienteAuto' AND meta_value = ";
@@ -117,19 +114,17 @@ class Nuevo_Pedido
         } else {
             $userData = getAllUserMeta($userID);
         }
-        //   print_r($userData);
-        $userDataWP = get_userdata($userID);
-        $userEmail = $userDataWP->user_email;
-
-
+        echo '<div id="arroyo-mensaje-carro" class="woocommerce-message" style="display: none;width: 70% display: inline-block"></div>';
         ?>
+
         <div id="full-colum">
-            <?php echo '</br>User ID = ' . $userID . '</br>'; ?>
-            <h3>formulario para nuevos pedidos</h3>
-            <input type="text" name="findProducts" id="findProducts" placeholder="Buscar Productos4" value=""
+            <span id="resultadoCreateCustomOrder"></span>
+            <?php echo '<input id="customerIdForCustomOrder" type="hidden" value="' . $userID . '"/>' ;?>
+            <?php echo '<h3>Crear nuevo pedido para ' . $userData['nickname'][0] . '</h3>'; ?>
+            <input type="text" name="findProducts" id="findProducts" placeholder="Buscar Productos" value=""
                    class="regular-text" onchange="findProducts(this.value)"/>
             <div>
-                <table id="productsFound" name="productsFound"  style="width=100%">
+                <table id="productsFound" name="productsFound" style="width=100%">
                 </table>
             </div>
             <?php echo do_shortcode('[woocommerce_cart]'); ?>

@@ -276,17 +276,36 @@ text-transform: uppercase;
 /* ////////// BUSCADOR CLIENTE ///////// */
 
 #findClients
+{
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+#usersFound
+{
+    width: 100%;
+}
+
+#usersFound td, #usersFound th
+{
+    height: 5px!important;
+    padding: 5px;
+}
+
+/* ////////// BUSCADOR PRODUCTOS ///////// */
+
+#findProducts
  {
   width: 100%;
   margin-bottom: 2%;
  }
 
-#usersFound
+#productsFound
  {
   width: 100%;
  }
 
-#usersFound td, #usersFound th
+#productsFound td, #productsFound th
  {
   height: 5px!important;
   padding: 5px;

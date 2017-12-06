@@ -90,13 +90,11 @@ if ($num_rows > 0) {
                 $productPrice = $productList['meta_value'];
              }
           }
-        echo '<td>ID= </td>';
+        echo '<td>' .  $row['post_id'] . '</td>';
         echo '<td>' . $productCode . '</td>';
         echo '<td>' . $productTitle . '</td>';
         echo '<td>' . $productPrice . '</td>';
-//        echo '<td><a class="button" href="' . $siteUrl . '?add-to-cart=' . $productCode . '">Agregar al Carrito</a></td>';
-        echo '<td><a class="button" href="' . $siteUrl . 'escritorio/nuevo-pedido?add-to-cart=978">Agregar al Carrito</a></td>';
-//        echo '<td><a class="button" href="">Agregar al Carrito</a></td>';
+        echo '<td><a class="button" href="' . $siteUrl . 'escritorio/nuevo-pedido?add-to-cart=' . $row['post_id'] . '">Agregar al Carrito</a></td>';
         echo '</tr>';
 
         $productCode = '';

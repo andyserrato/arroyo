@@ -292,8 +292,6 @@
                 queryValue: document.getElementById('arr-visitTo').value
             });
 
-            console.log(queryArray);
-
             return queryArray;
         }
         // -------------------------------------------------------------------------
@@ -306,17 +304,11 @@
         function obtenerQueryString(queryArray) {
             var queryString = '';
             for (var i = 0 ; i < queryArray.length ; i++) {
-                console.log(queryArray[i]);
-                console.log('&' + queryArray[i].queryName + '=' + queryArray[i].queryValue);
                 queryString += '&' + queryArray[i].queryName + '=' + queryArray[i].queryValue;
             }
-            console.log(queryString);
             return queryString;
         }
         // -------------------------------------------------------------------------
-
-
-
 
     </script>
     <?php wp_head(); ?>

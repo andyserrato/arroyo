@@ -214,7 +214,116 @@ function override_user_id( $user_id, $entry, $form, $feed )
     return $user_id;
 }
 
-add_filter( 'gform_user_registration_update_user_id_9', 'override_user_id', 10, 4 );
+add_action( 'wp_enqueue_scripts', 'ajax_test_enqueue_scripts' );
+function ajax_test_enqueue_scripts() {
+    wp_enqueue_script( 'ajax_test', get_theme_root_uri() . '/systemTheme/ajax-test.js', array('jquery'));
+    wp_localize_script('ajax_test', 'wp_ajax_tests_vars', array(
+        'ajaxurl' => admin_url( 'admin-ajax.php' )
+    ));
+    wp_localize_script('ajax_test','wp_ajax_tests_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
+}
+
+// Hook para usuarios no logueados
+add_action('wp_ajax_nopriv_create_custom_order_arroyo', 'create_custom_order_arroyo');
+// Hook para usuarios logueados
+add_action('wp_ajax_create_custom_order_arroyo', 'create_custom_order_arroyo');
+// Función que procesa la llamada AJAX
+function create_custom_order_arroyo(){
+
+    global $woocommerce;
+
+    $userId = isset( $_POST['userId'] ) ? $_POST['userId'] : false;
+    if ($userId && !$woocommerce->cart->is_empty()) {
+
+        $order = wc_create_order();
+        $items = $woocommerce->cart->get_cart();
+
+        foreach($items as $item => $values) {
+            $order->add_product(
+                $values['data'], $values['quantity'], array(
+                    'variation' => $values['variation'],
+                    'totals' => array(
+                        'subtotal' => $values['line_subtotal'],
+                        'subtotal_tax' => $values['line_subtotal_tax'],
+                        'total' => $values['line_total'],
+                        'tax' => $values['line_tax'],
+                        'tax_data' => $values['line_tax_data'] // Since 2.2
+                    )
+                )
+            );
+        }
+
+        $woocommerce->cart->empty_cart();
+        $woocommerce->cart->empty_cart(true);
+
+        $addresses = getBillingAndShippingAddress($userId);
+
+        $order->set_customer_id($userId);
+        $order->set_address( $addresses['billing'], 'billing' );
+        $order->set_address( $addresses['shipping'], 'shipping' );
+        $order->calculate_totals();
+        wp_send_json( array('message' => __('Pedido realizado con éxito| :(', 'wpduf'), 'success' =>  __( true, 'wpduf')) );
+    } else if ($woocommerce->cart->is_empty()){
+        wp_send_json( array('message' => __('El carrito está vacío :(', 'wpduf'), 'success' =>  __( false, 'wpduf')) );
+    } else if (!$userId) {
+        wp_send_json( array('message' => __('Cliente no encontrado!', 'wpduf'), 'success' =>  __( false, 'wpduf') ) );
+    } else {
+        wp_send_json( array('message' => __('Error!', 'wpduf') , 'success' =>  __( false, 'wpduf')) );
+    }
+
+}
+
+function getBillingAndShippingAddress($userId) {
+    $userData = get_user_meta($userId);
+    $userDataWP = get_userdata($userId);
+    $email = $userDataWP->user_email;
+
+    if ($userData['dirEnvioComoFact'][0] == 'si') {
+        $billingAddress = array(
+            'first_name' => $userData['nombreContacto'][0],
+            'last_name'  => '',
+            'company'    => $userData['shipping_company'][0] == '' ? $userData['nickname'][0] : $userData['shipping_company'][0],
+            'email'      => $email,
+            'phone'      => $userData['telFijo1'][0],
+            'address_1'  => $userData['shipping_address_1'][0] . ' ' . $userData['numCalle'][0] . ' ' . $userData['numPiso'][0],
+            'address_2'  => '',
+            'city'       => $userData['shipping_city'][0],
+            'state'      => $userData['shipping_state'][0],
+            'postcode'   => $userData['shipping_postcode'][0],
+            'country'    => 'ES'
+        );
+    } else {
+        $billingAddress = array(
+            'first_name' => $userData['nombreContacto'][0],
+            'last_name'  => '',
+            'company'    => $userData['shipping_company'][0] == '' ? $userData['nickname'][0] : $userData['shipping_company'][0],
+            'email'      => $email,
+            'phone'      => $userData['telFijo1'][0],
+            'address_1'  => $userData['billing_address_1'][0] . ' ' . $userData['numCalle'][0] . ' ' . $userData['numPiso'][0],
+            'address_2'  => '',
+            'city'       => $userData['billing_city'][0],
+            'state'      => $userData['billing_state'][0],
+            'postcode'   => $userData['billing_postcode'][0],
+            'country'    => 'ES'
+        );
+    }
+
+    $shippingAddress = array(
+        'first_name' => $userData['nombreContacto'][0],
+        'last_name'  => '',
+        'company'    => $userData['nickname'][0],
+        'address_1'  => $userData['billing_address_1'][0] . ' ' . $userData['numCalle'][0] . ' ' . $userData['numPiso'][0],
+        'address_2'  => '',
+        'city'       => $userData['billing_city'][0],
+        'state'      => $userData['billing_state'][0],
+        'postcode'   => $userData['billing_postcode'][0],
+        'country'    => 'ES'
+    );
+
+    return array(
+        'shipping' => $shippingAddress,
+        'billing' => $billingAddress);
+}
 
 
 ?>
