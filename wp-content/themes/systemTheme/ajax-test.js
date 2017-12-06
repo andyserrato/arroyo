@@ -6,7 +6,7 @@ jQuery(document).ready( function(){
         jQuery('.checkout-button').text('Generar Orden');
         jQuery('.wc-backward').hide();
         const urlCarrito = window.location.protocol + "//" + window.location.host + "/wordpress/carrito";
-        jQuery('.button.wc-forward[href=urlCarrito]').hide();
+        jQuery('.button.wc-forward[href=' + "\"" + urlCarrito + "\"" + ']').hide();
         jQuery('.coupon').hide();
         jQuery('.woocommerce-cart-form').attr("action", window.location.protocol + "//" + window.location.host + "/wordpress/escritorio/nuevo-pedido");
     }
@@ -19,6 +19,8 @@ jQuery(document).ready( function(){
                 jQuery(this).prop("disabled",true);
                 jQuery('#arroyo-mensaje-carro').hide();
                 jQuery('#loading').fadeIn();
+                jQuery('.woocommerce-cart-form').hide();
+                jQuery('.cart-collaterals').hide();
             },
             complete: function () {
                 jQuery(this).prop("disabled",false);
@@ -43,7 +45,7 @@ jQuery(document).ready( function(){
 });
 
 function callfunctiononHeaders2() {
-
+    jQuery('#arroyo-mensaje-carro').hide();
     jQuery('.woocommerce-cart-form').show();
     jQuery('.cart-collaterals').show();
 

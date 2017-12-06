@@ -114,10 +114,11 @@ class Nuevo_Pedido
         } else {
             $userData = getAllUserMeta($userID);
         }
-        echo '<div id="arroyo-mensaje-carro" class="woocommerce-message" style="display: none;width: 70% display: inline-block"></div>';
+        echo '';
         ?>
 
         <div id="full-colum">
+            <div id="arroyo-mensaje-carro" class="woocommerce-message" style="display: none"></div>
             <span id="resultadoCreateCustomOrder"></span>
             <?php echo '<input id="customerIdForCustomOrder" type="hidden" value="' . $userID . '"/>' ;?>
             <?php echo '<h3>Crear nuevo pedido para ' . $userData['nickname'][0] . '</h3>'; ?>
